@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         zPlayers
 // @namespace    zEnhancements
-// @version      0.1
+// @version      0.2
 // @description  Removes Discord user count from the "Players Online" statistic
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
