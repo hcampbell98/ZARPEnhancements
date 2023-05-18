@@ -4,7 +4,7 @@
 // @require      zUser.js
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @version      0.2
+// @version      0.3
 // @description  I hate Sinz - This script lets you mute him.
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
@@ -63,7 +63,7 @@
         });
 
         postsOnPage.forEach((post) => {
-            let profileUrl = "https://zarpgaming.com" + post.querySelector(".kwho-user").getAttribute("href");
+            let profileUrl = "https://zarpgaming.com" + post.querySelector(".ktopic-by > a").getAttribute("href");
             let postHref = post.querySelector(".ktopic-title-cover>a").getAttribute("href");
 
             if (mutedUsers.includes(profileUrl)) {
