@@ -47,8 +47,24 @@
             let profileUrl = "https://zarpgaming.com" + post.querySelector(".kpost-username>a").getAttribute("href");
 
             if (mutedUsers.includes(profileUrl)) {
-                let parent = post.parentElement;
-                parent.removeChild(post);
+                // We want to add a click event handler to the message header, that will toggle the message body
+                // The message header is the element directly above the message body
+                let messageHeader = post.previousElementSibling;
+
+                // Add click event handler to message header
+                messageHeader.addEventListener("click", function () {
+                    // Toggle message body
+                    // We need to do this by adding the 'hide' attribute to the message body
+                    // If the message body is already hidden, we want to remove the 'hide' attribute
+                    if (post.hasAttribute("hidden")) {
+                        post.removeAttribute("hidden");
+                    } else {
+                        post.setAttribute("hidden", "");
+                    }
+                });
+
+                // Hide message body
+                post.setAttribute("hidden", "");
             }
         });
     }
