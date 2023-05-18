@@ -14,6 +14,15 @@
 (function () {
     "use strict";
 
+    var defaultMutedUsers = [new User("https://zarpgaming.com/index.php/forum/profile/37312-sinzz")];
+
+    //Mute users in defaultMutedUsers if they aren't already muted
+    defaultMutedUsers.forEach((user) => {
+        if (!user.isMuted() && !user.isInteractedWith()) {
+            user.mute();
+        }
+    });
+
     //If we're on the profile page, we want to add a mute button
     if (window.location.href.includes("profile")) {
         //Create User object
