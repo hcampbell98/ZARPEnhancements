@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Removes Discord user count from the "Players Online" statistic
 // @author       hcampbell.dev
-// @match        https://zarpgaming.com/
+// @match        https://zarpgaming.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=zarpgaming.com
 // ==/UserScript==
 
