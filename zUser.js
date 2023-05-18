@@ -2,9 +2,18 @@ class User {
     constructor(profileUrl) {
         this.profileUrl = profileUrl;
         this.muted = this.isMuted();
+
+        this.interactedWith = this.isInteractedWith();
     }
 
     toggleMute() {
+        this.interactedWith = true;
+        let interactedUsers = GM_getValue("interactedUsers", []);
+        if (!interactedUsers.includes(this.profileUrl)) {
+            interactedUsers.push(this.profileUrl);
+            GM_setValue("interactedUsers", interactedUsers);
+        }
+
         if (this.muted) {
             this.unmute();
         } else {
@@ -15,6 +24,11 @@ class User {
     isMuted() {
         let mutedUsers = GM_getValue("mutedUsers", []);
         return mutedUsers.includes(this.profileUrl);
+    }
+
+    isInteractedWith() {
+        let interactedUsers = GM_getValue("interactedUsers", []);
+        return interactedUsers.includes(this.profileUrl);
     }
 
     mute() {
