@@ -4,7 +4,7 @@
 // @require      zUser.js
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @version      0.5
+// @version      0.6
 // @description  I hate Sinz - This script lets you mute him.
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
