@@ -14,6 +14,7 @@
 (function () {
     "use strict";
 
+    //If we're on the profile page, we want to add a mute button
     if (window.location.href.includes("profile")) {
         //Create User object
         let profileUrl = window.location.href;
@@ -46,13 +47,13 @@
             let profileUrl = "https://zarpgaming.com" + post.querySelector(".kpost-username>a").getAttribute("href");
 
             if (mutedUsers.includes(profileUrl)) {
-                console.log("Blocked muted user from being displayed");
-
                 let parent = post.parentElement;
                 parent.removeChild(post);
             }
         });
-    } else {
+    }
+    //If we're on the forum page, we want to hide threads from muted users
+    else {
         let mutedUsers = GM_getValue("mutedUsers", []);
 
         //The elements we want are the parent of the parent of the .ktopic-details element
@@ -62,16 +63,26 @@
             return element.parentElement.parentElement;
         });
 
+        //Hides threads from muted users
         postsOnPage.forEach((post) => {
             let profileUrl = "https://zarpgaming.com" + post.querySelector(".ktopic-by > a").getAttribute("href");
             let postHref = post.querySelector(".ktopic-title-cover>a").getAttribute("href");
 
             if (mutedUsers.includes(profileUrl)) {
-                console.log("Blocked muted user from being displayed");
-
                 post.innerHTML = `<td class='kcol-first'></td><td class='kcol-mid'></td><td class='kcol-mid kcol-ktopictitle'><div class='ktopic-title-cover'><a href='${postHref}'>This user has been muted</a></div></td><td class='kcol-mid'></td><td class='kcol-mid'></td>`;
-                // let parent = post.parentElement;
-                // parent.removeChild(post);
+
+                //Remove post from postsOnPage
+                postsOnPage.splice(postsOnPage.indexOf(post), 1);
+            }
+        });
+
+        //Changes "Last Post by" to "Last Post by Muted User" if the last post was by a muted user
+        postsOnPage.forEach((post) => {
+            let profileUrl = "https://zarpgaming.com" + post.querySelector(".ktopic-latest-post > a:nth-child(2)").getAttribute("href");
+            let lastPostBy = post.querySelector(".ktopic-latest-post > a:nth-child(2)");
+
+            if (mutedUsers.includes(profileUrl)) {
+                lastPostBy.innerText = "Muted User";
             }
         });
     }
