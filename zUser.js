@@ -1,9 +1,13 @@
 class User {
     constructor(profileUrl) {
-        this.profileUrl = profileUrl;
+        this.profileUrl = this.getProfileId(profileUrl);
         this.muted = this.isMuted();
 
         this.interactedWith = this.isInteractedWith();
+    }
+
+    getProfileId(profileUrl) {
+        return profileUrl.match(/\d+/)[0];
     }
 
     toggleMute() {
@@ -14,11 +18,8 @@ class User {
             GM_setValue("interactedUsers", interactedUsers);
         }
 
-        if (this.muted) {
-            this.unmute();
-        } else {
-            this.mute();
-        }
+        if (this.muted) this.unmute();
+        else this.mute();
     }
 
     isMuted() {

@@ -4,7 +4,7 @@
 // @require      zUser.js
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @version      0.8
+// @version      0.9
 // @description  I hate Sinz - This script lets you mute him.
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
@@ -18,9 +18,8 @@
 
     //Mute users in defaultMutedUsers if they aren't already muted
     defaultMutedUsers.forEach((user) => {
-        if (!user.isMuted() && !user.isInteractedWith()) {
+        if (!user.isMuted() && !user.isInteractedWith())
             user.mute();
-        }
     });
 
     //If we're on the profile page, we want to add a mute button
@@ -42,9 +41,7 @@
         muteButton.innerHTML = "<span class='reply'><span>" + buttonText + "</span></span>";
 
         //Added click handler to mute button
-        muteButton.addEventListener("click", function () {
-            user.toggleMute();
-        });
+        muteButton.addEventListener("click", () => user.toggleMute);
 
         //Append mute button to DOM
         profileList.appendChild(muteButton);
@@ -52,9 +49,7 @@
         // Replace profile picture for muted user
         if (user.isMuted()) {
             let profileImage = document.querySelector(".kavatar-lg img.kavatar");
-            if (profileImage) {
-                profileImage.src = "https://zarpgaming.com/media/kunena/avatars/resized/size200/blue_eagle/nophoto.jpg";
-            }
+            if (profileImage) profileImage.src = "https://zarpgaming.com/media/kunena/avatars/resized/size200/blue_eagle/nophoto.jpg";
         }
     }
     //If we're on a thread, we want to hide posts from muted users
@@ -75,11 +70,8 @@
                     // Toggle message body
                     // We need to do this by adding the 'hide' attribute to the message body
                     // If the message body is already hidden, we want to remove the 'hide' attribute
-                    if (post.hasAttribute("hidden")) {
-                        post.removeAttribute("hidden");
-                    } else {
-                        post.setAttribute("hidden", "");
-                    }
+                    if (post.hasAttribute("hidden")) post.removeAttribute("hidden");
+                    else post.setAttribute("hidden", "");
                 });
 
                 // Hide message body
@@ -108,9 +100,7 @@
 
                 // Replace avatar for muted user
                 let avatar = post.querySelector(".klist-avatar");
-                if (avatar) {
-                    avatar.src = "https://zarpgaming.com/media/kunena/avatars/resized/size200/blue_eagle/nophoto.jpg";
-                }
+                if (avatar) avatar.src = "https://zarpgaming.com/media/kunena/avatars/resized/size200/blue_eagle/nophoto.jpg";
             }
         });
 
@@ -119,9 +109,8 @@
             let profileUrl = "https://zarpgaming.com" + post.querySelector(".ktopic-by > a").getAttribute("href");
             let postHref = post.querySelector(".ktopic-title-cover>a").getAttribute("href");
 
-            if (mutedUsers.includes(profileUrl)) {
+            if (mutedUsers.includes(profileUrl))
                 post.innerHTML = `<td class='kcol-first'></td><td class='kcol-mid'></td><td class='kcol-mid kcol-ktopictitle'><div class='ktopic-title-cover'><a href='${postHref}'>This user has been muted</a></div></td><td class='kcol-mid'></td><td class='kcol-mid'></td>`;
-            }
         });
     }
 })();
