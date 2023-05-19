@@ -4,7 +4,7 @@
 // @require      zUser.js
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @version      0.7
+// @version      0.8
 // @description  I hate Sinz - This script lets you mute him.
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
@@ -48,6 +48,14 @@
 
         //Append mute button to DOM
         profileList.appendChild(muteButton);
+
+        // Replace profile picture for muted user
+        if (user.isMuted()) {
+            let profileImage = document.querySelector(".kavatar-lg img.kavatar");
+            if (profileImage) {
+                profileImage.src = "https://zarpgaming.com/media/kunena/avatars/resized/size200/blue_eagle/nophoto.jpg";
+            }
+        }
     }
     //If we're on a thread, we want to hide posts from muted users
     else if (window.location.href.includes("/forum/")) {
@@ -97,6 +105,12 @@
 
             if (mutedUsers.includes(profileUrl)) {
                 lastPostBy.innerText = "Muted User";
+
+                // Replace avatar for muted user
+                let avatar = post.querySelector(".klist-avatar");
+                if (avatar) {
+                    avatar.src = "https://zarpgaming.com/media/kunena/avatars/resized/size200/blue_eagle/nophoto.jpg";
+                }
             }
         });
 
