@@ -18,8 +18,7 @@
 
     //Mute users in defaultMutedUsers if they aren't already muted
     defaultMutedUsers.forEach((user) => {
-        if (!user.isMuted() && !user.isInteractedWith())
-            user.mute();
+        if (!user.isMuted() && !user.isInteractedWith()) user.mute();
     });
 
     //If we're on the profile page, we want to add a mute button
@@ -41,7 +40,7 @@
         muteButton.innerHTML = "<span class='reply'><span>" + buttonText + "</span></span>";
 
         //Added click handler to mute button
-        muteButton.addEventListener("click", () => user.toggleMute);
+        muteButton.addEventListener("click", () => user.toggleMute());
 
         //Append mute button to DOM
         profileList.appendChild(muteButton);
