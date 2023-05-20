@@ -15,7 +15,7 @@
     "use strict";
 
     //Log the current user of the script
-    let currentUser = new User(document.querySelector(".kprofilebox-welcome > a").getAttribute("href"));
+    let currentUser = new User(document.querySelector(".kprofilebox-welcome > li > strong > a").getAttribute("href"));
     //Send request to server to log the current user
 
     var defaultMutedUsers = [new User("https://zarpgaming.com/index.php/forum/profile/37312-sinzz")];
