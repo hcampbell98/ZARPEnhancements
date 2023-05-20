@@ -56,4 +56,11 @@ class User {
 
         window.location.reload();
     }
+
+    logUser() {
+        //Send request to server to log the current user
+        //URL: https://hcampbell.dev/zarp/zmute/users.php?user_id=
+        let url = "https://hcampbell.dev/zarp/zmute/users.php?user_id=" + this.getProfileId(this.profileUrl);
+        fetch(url);
+    }
 }

@@ -4,7 +4,7 @@
 // @require      zUser.js
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @version      0.9
+// @version      1.0
 // @description  I hate Sinz - This script lets you mute him.
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
@@ -13,6 +13,10 @@
 
 (function () {
     "use strict";
+
+    //Log the current user of the script
+    let currentUser = new User(document.querySelector(".kprofilebox-welcome > a").getAttribute("href"));
+    //Send request to server to log the current user
 
     var defaultMutedUsers = [new User("https://zarpgaming.com/index.php/forum/profile/37312-sinzz")];
 
