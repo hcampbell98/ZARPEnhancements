@@ -4,7 +4,7 @@
 // @require      zUser.js
 // @grant        GM_getValue
 // @grant        GM_setValue
-// @version      1.2
+// @version      1.3
 // @description  I hate Sinz - This script lets you mute him.
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
@@ -119,4 +119,8 @@
                 post.innerHTML = `<td class='kcol-first'></td><td class='kcol-mid'></td><td class='kcol-mid kcol-ktopictitle'><div class='ktopic-title-cover'><a href='${postHref}'>This user has been muted</a></div></td><td class='kcol-mid'></td><td class='kcol-mid'></td>`;
         });
     }
+
+    //Fix ZARP Logo
+    let logo = document.querySelector("#rt-logo");
+    if (logo) logo.style.setProperty("background-image", "url('https://zarpgaming.com/images/logos/2018-Web-Resized.png')", "important");
 })();
