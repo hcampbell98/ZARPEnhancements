@@ -1,6 +1,14 @@
 class User {
-    constructor(profileUrl) {
+    constructor(profileUrl, username = "") {
         this.profileUrl = this.getProfileId(profileUrl);
+
+        // If username is not provided, we'll extract it from the profileUrl
+        // the profileUrl is in the format: https://zarpgaming.com/index.php/forum/profile/12345-username
+        if (username == "") {
+            let usernameRegex = /\/profile\/\d+-(.*)/i;
+            this.username = profileUrl.match(usernameRegex)[1];
+        } else this.username = username;
+
         this.muted = this.isMuted();
 
         this.interactedWith = this.isInteractedWith();
@@ -8,6 +16,10 @@ class User {
 
     getProfileId(profileUrl) {
         return profileUrl.match(/\d+/)[0];
+    }
+
+    getUsername() {
+        return this.username;
     }
 
     toggleMute() {
