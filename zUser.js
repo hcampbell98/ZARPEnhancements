@@ -33,8 +33,13 @@ class User {
     }
 
     isInteractedWith() {
-        let interactedUsers = GM_getValue("interactedUsers", []);
-        return interactedUsers.includes(this.profileId);
+        let storedUsers = GM_getValue("storedUsers", []);
+
+        for (let i = 0; i < storedUsers.length; i++) {
+            if (storedUsers[i].profileId === this.profileId) {
+                return storedUsers[i].interactedWith;
+            }
+        }
     }
 
     update() {
