@@ -14,6 +14,15 @@
 
     //If we're on the profile page
     if (window.location.href.includes("profile")) {
+        let profileUrl = window.location.href;
+        var user = new User(profileUrl);
+
+        //If the user is a legendary member
+        if (user.isLegendary()) {
+            //Replace rank image with LM rank image
+            let rankImage = document.querySelector(".kprofile-rank > img");
+            rankImage.src = "https://zarpgaming.com/media/kunena/ranks/2023-legendarymember.png";
+        }
     }
     //If we're in a thread
     else if (window.location.href.includes("/forum/")) {
@@ -21,13 +30,18 @@
         postsOnPage.forEach((post) => {
             let profileUrl = "https://zarpgaming.com" + post.querySelector(".kpost-username>a").getAttribute("href");
             let user = new User(profileUrl);
+
             if (user.isLegendary()) {
-                let rankImage = post.querySelectorAll("kpost-userrank-img > img").slice(-1)[0];
+                //Set LM Rank Image
+                let rankImages = post.querySelectorAll(".kpost-userrank-img > img");
+                //We want the last rank image
+                let rankImage = rankImages[rankImages.length - 1];
                 rankImage.src = "https://zarpgaming.com/media/kunena/ranks/2023-legendarymember.png";
+
+                //Set LM Rank Title
+                let rankTitle = post.querySelector(".kpost-userrank");
+                rankTitle.innerHTML = "Legendary Member";
             }
         });
-    }
-    //If we're on an index page
-    else {
     }
 })();
