@@ -1,3 +1,5 @@
+const LEGENDARY_USERS_URL = "https://raw.githubusercontent.com/hcampbell98/ZARPEnhancements/main/legendary.json";
+
 class User {
     constructor(profileUrl, username = "", muted = false, interactedWith = false) {
         this.profileUrl = profileUrl;
@@ -40,6 +42,17 @@ class User {
                 return storedUsers[i].interactedWith;
             }
         }
+    }
+
+    isLegendary() {
+        //Get the list of legendary users
+        fetch(LEGENDARY_USERS_URL)
+            .then((response) => response.json())
+            .then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i] === this.profileId) return true;
+                }
+            });
     }
 
     update() {
