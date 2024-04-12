@@ -2,7 +2,7 @@
 // @name         zLegendary
 // @namespace    zEnhancements
 // @require      https://raw.githubusercontent.com/hcampbell98/ZARPEnhancements/main/zUser.js
-// @version      0.1
+// @version      0.2
 // @description  Adds new Legendary Members to the ZARP forums
 // @author       hcampbell.dev
 // @match        https://zarpgaming.com/*
