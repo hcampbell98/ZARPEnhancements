@@ -1,4 +1,4 @@
-const LEGENDARY_USERS = ["26585", "32048"];
+const LEGENDARY_USERS = ["26585", "32048", "28983"];
 
 class User {
     constructor(profileUrl, username = "", muted = false, interactedWith = false) {
