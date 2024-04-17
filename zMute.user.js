@@ -13,13 +13,6 @@
 
 (function () {
     "use strict";
-    //If this is true, the script will send a request to the server to log the current user
-    let SHOULD_TRACK = true;
-
-    if (SHOULD_TRACK) {
-        let currentUser = new User(document.querySelector(".kprofilebox-welcome > li > strong > a").getAttribute("href"));
-        currentUser.logUser();
-    }
 
     var defaultMutedUsers = [new User("https://zarpgaming.com/index.php/forum/profile/37312-sinzz", "sinzz")];
 
